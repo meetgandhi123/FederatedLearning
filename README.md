@@ -9,6 +9,7 @@ Keywords: Federated Learning, TensorFlow Federated, Deep Learning, Distributed T
 
 
 > Google Colab Notebook Link: https://colab.research.google.com/drive/1xuDQBH-QmbSJgeQDOwG664V3NBZYQWzK?usp=sharing
+
 > Medium Blog : https://medium.com/@meet.gandhi1415/de-centralized-training-of-deep-neural-networks-using-federated-learning-deaa279f1d65
 
 
