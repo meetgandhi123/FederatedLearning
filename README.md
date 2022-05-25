@@ -31,9 +31,9 @@ There are several ways the federated learning environment can be replicated, one
 The TensorFlow-Federated framework provides us with several modules and methods which can be directly used to create a federated learning environment. Federated learning requires a federated data set, i.e., a collection of data from multiple users. Federated data is typically non-i.i.d., which poses a unique set of challenges. Tensorflow-Federated provides us with a few inbuilt non-IID data sets like StackOverflow, Federated EMNIST, Shakespeare CIFAR-100, and CelebA. For the sake of this project, we are using the Federated EMNIST dataset. Using this dataset will enable us to divide the training data among all the clients, typically they have different distributions of data depending on usage patterns. Some clients might have more data depending on the usage and the storage availability while some clients might have less data on them.
 
 Once the dataset is decided there are several methods provided by TensorFlow-federated which are as follows:
-<center>
+
 ![alt text](https://miro.medium.com/max/1400/1*Z7qbQUOvoYsS9VQfr1KSEQ.png)
-</center>
+
 For the experimentation, we have selected up to 10 clients, with a batch size of 20 and 25 epochs. For the following distribution of clients, we can simply use the commands provided in the above table.
 
 Once the dataset and clients are generated we can move forward with the model part. For generating the model we are using the TensorFlow Keras package. Here in this project, we are not focusing on making more complex and deep models rather we are focusing on implementing the training process in a distributed manner. Thus we make a simple model with two dense layers, one with 512 neurons and the second with 256 neurons, then we add a drop-out layer with 50% probability and finally 10 neurons at the end with a softmax activation function. The structure of the model can be seen below.
