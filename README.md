@@ -19,7 +19,7 @@ Due to the private nature of data, using a traditional machine learning pipeline
 
 Some of the examples of federated learning that we see in our day-to-day life are Apple’s voice assistant “Siri”, Amazon Alexa, and even Google’s Gboard keyboard. Consider the figure below, considering an example of Alexa, there are millions of Amazon Alexa deployed all over the world which are connected to the internet, according to the usage and connectivity some of those devices are selected as clients. These clients are trained on an individual voice by commands like “Hey Alexa, set an alarm” or “Hey Alexa, what’s today’s date?” (Figure 1 — A). The model is trained on this individual voice and then sent to the main server which will perform several operations like an aggregation of the learned weights from the model (Figure 1 — B). The updates with the aggregated weights are then sent to the clients thus improving the overall accuracy in terms of identifying words/ assents more accurately (Figure 1 — C) [8].
 
-<image>
+![alt text](https://miro.medium.com/max/1400/1*HWc5NuExyEaj5mRVKOj8sQ.png)
 
 In this project, we are working with the MNIST dataset and testing the training process with clients ranging from 2 to 10. We evaluate the testing and training accuracy of the model along with the processing time taken in the entire process.
 
@@ -31,13 +31,13 @@ The TensorFlow-Federated framework provides us with several modules and methods 
 
 Once the dataset is decided there are several methods provided by TensorFlow-federated which are as follows:
 
-<table1>
+![alt text](https://miro.medium.com/max/1400/1*Z7qbQUOvoYsS9VQfr1KSEQ.png)
 
 For the experimentation, we have selected up to 10 clients, with a batch size of 20 and 25 epochs. For the following distribution of clients, we can simply use the commands provided in the above table.
 
 Once the dataset and clients are generated we can move forward with the model part. For generating the model we are using the TensorFlow Keras package. Here in this project, we are not focusing on making more complex and deep models rather we are focusing on implementing the training process in a distributed manner. Thus we make a simple model with two dense layers, one with 512 neurons and the second with 256 neurons, then we add a drop-out layer with 50% probability and finally 10 neurons at the end with a softmax activation function. The structure of the model can be seen below.
 
-<image2>
+![alt text](https://miro.medium.com/max/902/0*Nf2ZN5PXk7vYu9iF)
 
 Finally, we set the client and server optimization function as SGD, once the learning process starts. Each client is given a chunk of data to train the model on, for each epoch, the clients train their model with the provided data and send that update to the server. The major work done by the server here is to aggregate the updates obtained by all the clients.
 
@@ -47,7 +47,7 @@ Here we perform and analyze our experiments, there are plenty of hyper-parameter
 ### Analyze model performance with different numbers of epochs keeping the number of clients constant:
 Keeping the computational resources in mind we are testing with a number of clients equal to 5 and 10 respectively and monitoring our model with different numbers of epochs. As the number of clients is 5 and 10 the dataset will be divided into 5 and 10 parts and distributed around the generated clients. Ideally increasing the number of epochs should gradually increase the accuracy of the model. As shown in the table below we can see the change in the accuracy for 5 clients increases from 46.35% to 94.16% and for 10 clients is 76.16% at the 5th epoch and it keeps on increasing up to 97.52% in the 25th epoch. Both the training and testing accuracy is as expected hence showing that the model has been trained well.
 
-<table2>
+![alt text](https://miro.medium.com/max/1400/1*hBDWmFce6RaCNx5KZwSWCA.png)
 
 We are also taking the execution time into consideration as the number of devices increases the load at the server side increases as it needs to manage more devices simultaneously and thus training a higher number of clients takes more computation time as compared to training with less number of clients. Thus a clear distinction in computation time is seen for 5 and 10 clients.
 
@@ -55,7 +55,7 @@ We are also taking the execution time into consideration as the number of device
 
 In this experimental part, we are comparing the model result with increasing the number of clients. For the experimental purpose we are testing with 2, 4, 6, 8, and 10 clients, each of the clients is trained for 25 epochs. Now if the number of clients is 1 then it is similar to the normal machine learning training approach because having only 1 client means all the data and training is done on just one client. On increasing the number of clients the server needs to manage all the transactions and updates, for that it takes the average of all the updates. Now while each client is sending its update to the server a small random noise is introduced to the updating weights such that even if the update has been intercepted by a 3rd party they will not be able to reverse engineer the model or the data. Thus as the number of clients increases this random noise also increases and thus when the weights are aggregated on the server, we can see a slight decline in model performance due to that added randomness in the weights.
 
-<table3>
+![alt text](https://miro.medium.com/max/1400/1*roAj6W-6j_7WG5ZjvN_P0Q.png)
 
 Finally, we again take processing time into consideration, as explained in the first part of the experimentation as the number of clients increases and the time duration for each iteration also increases. Here we can clearly see that the average time for each epoch increased from 1.62 seconds for 2 clients to 6.97 seconds for 10 clients.
 
@@ -72,6 +72,7 @@ Deep Learning has been used in numerous tasks but the data hungry nature of such
 - https://github.com/OpenMined/PySyft
 - https://www.tensorflow.org/federated
 - Brendan McMahan and Daniel Ramage, Research Scientists Google AI Blog, “Federated Learning: Collaborative Machine Learning without Centralized Training Data” https://ai.googleblog.com/2017/04/federated-learning-collaborative.html.
+- https://medium.com/@meet.gandhi1415/de-centralized-training-of-deep-neural-networks-using-federated-learning-deaa279f1d65
 
 
 ## License
